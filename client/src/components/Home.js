@@ -12,7 +12,7 @@ const Home = () => (
 const StyledHeader = styled.h1`
 font-family: 'Karla', sans-serif;
 text-align: center;
-font-size: 80px;
+font-size: 50px;
 font-weight: 600;
 color: #bf6d06;
 animation-name: moveInLeft; /*refers to @keyframes name*/
@@ -35,7 +35,7 @@ animation-timing-function: ease-in;
 const StyledText = styled.p`
 font-family: 'Karla', sans-serif;
 text-align: center;
-font-size: 50px;
+font-size: 30px;
 margin: 0;
 padding-top: 50px;
 color: #bf6d06;

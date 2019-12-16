@@ -10,11 +10,27 @@ const Home = () => (
 )
 
 const StyledHeader = styled.h1`
-font-family: 'Poppins', sans-serif;
+font-family: 'Karla', sans-serif;
 text-align: center;
 font-size: 80px;
-font-weight: 400;
+font-weight: 600;
 color: #bf6d06;
+animation-name: moveInLeft; /*refers to @keyframes name*/
+animation-duration: 1.2s;
+animation-timing-function: ease-in;
+@keyframes moveInLeft {
+  0% {
+      opacity: 0;
+      transform: translateX(-100px);
+  }
+  80%{
+      transform: translateX(10px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
 `
 const StyledText = styled.p`
 font-family: 'Karla', sans-serif;
@@ -23,6 +39,20 @@ font-size: 50px;
 margin: 0;
 padding-top: 50px;
 color: #bf6d06;
+animation: moveInRight 1.2s ease-out;
+@keyframes moveInRight {
+  0% {
+      opacity: 0;
+      transform: translateX(100px);
+  }
+  80%{
+      transform: translateX(-10px);
+  }
+  100% {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
 `
 
 export default Home;

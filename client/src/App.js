@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 import PostForm from "./components/PostForm";
 import UserView from "./components/UserView";
 import UserForm from "./components/UserForm";
-import Posts from './components/Posts';
+// import Posts from './components/Posts';
 import ProtectedRoute from './components/ProtectedRoute';
 import Register from './components/Register';
 import Users from './components/Users';
@@ -27,13 +27,13 @@ const App = () => (
              {/* <ProtectedRoute exact path="/users" component={Users} />
             <ProtectedRoute exact path="/users/:user_id/posts" component={Posts} />
             <ProtectedRoute exact path="/users/:user_id/posts/new" component={PostForm} />  */}
-            <ProtectedRoute exact path="/users/:user_id/posts" component={Posts} />
-            <ProtectedRoute exact path="/users/:user_id/posts/new" component={PostForm} />
-            {/* <ProtectedRoute exact path="/posts/:id" component={PostView} /> */}
-            <ProtectedRoute exact path="/users/:user_id/posts/:id/edit" component={PostForm} />
+            {/* <ProtectedRoute exact path="/users/:user_id/posts" component={Posts} /> */}
             <ProtectedRoute exact path="/users" component={Users} />
             <ProtectedRoute exact path="/users/:id" component={UserView} />
             <ProtectedRoute exact path="/users/:id/edit" component={UserForm} /> 
+            <ProtectedRoute exact path="/users/:user_id/posts/new" component={PostForm} />
+            {/* <ProtectedRoute exact path="/posts/:id" component={PostView} /> */}
+            <ProtectedRoute exact path="/users/:user_id/posts/:id/edit" component={PostForm} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route component={NoMatch} />

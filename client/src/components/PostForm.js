@@ -12,9 +12,9 @@ class PostForm extends React.Component {
     if (id) {
       axios.get(`/api/users/${user.id}/posts/${id}`)
       .then(res => {
-          if (user.id !== res.data.user_id) {
-            history.push(`users/${user.id}/posts`);
-          }
+          // if (user.id !== res.data.user_id) {
+          //   history.push(`users/${user.id}/posts`);
+          // }
           this.setState({ body: res.data.body, })
         })
         .catch(err => console.log(err))
@@ -27,35 +27,38 @@ class PostForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { auth: { user, }, match: { params: { id, user_id }, history, }} = this.props;
+    const { auth: { user, }, match: { params: { id, user_id }}} = this.props;
     if((user.id == user_id) && id) {
       axios.put(`/api/users/${user_id}/posts/${id}`, this.state)
       .then(res => {
-        history.push(`/users/${user_id}/posts/${id}`)
+        this.props.history.push(`/users/${user_id}`)
         debugger
       })
       .catch(err => {
         console.log(err)
       })
-      } else {
+    } else {
       axios.post(`/api/users/${user_id}/posts`, this.state)
       .then(res => {
-        history.push(`/users/${user_id}`)
+        this.props.history.push(`/users/${user_id}`)
+        debugger
       })
-        .catch(err => {
-          console.log(err)
-        })
+      .catch(err => {
+        console.log(err)
+      })
     } 
+    debugger
   };
 
   render() {
-    const { match: { params: { id, } } } = this.props;
+    const { match: { params: { id, user_id} } } = this.props;
     return (
       <div>
         {id ?
           <Header as="h1" textAlign="center">Edit Post</Header>
           :
-          <Header as="h1" textAlign="center">New Post</Header>}
+          <Header as="h1" textAlign="center">New Post</Header>
+        }
         <Form onSubmit={this.handleSubmit}>
           <Form.TextArea
             label="Body"
@@ -67,7 +70,7 @@ class PostForm extends React.Component {
           />
           <Form.Button color="blue">Submit</Form.Button>
         </Form>
-        <Link to="/posts">
+        <Link to={`/users/${user_id }`}>
           <Button color="green">Back</Button>
         </Link>
       </div>

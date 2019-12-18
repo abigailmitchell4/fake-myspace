@@ -2,7 +2,6 @@ import React, { useEffect, useState, } from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
 import { AuthConsumer, } from "../providers/AuthProvider";
-import Posts from './Posts'
 import { Header, Segment, Button, Container, Card, } from "semantic-ui-react";
 
 const UserView = (props) => {
@@ -38,7 +37,7 @@ const UserView = (props) => {
     if (user_id == params.id) {
       return posts.map(post=> (
         <div key={post.id} style={{ marginTop: '40px', padding: '20px'}}>
-          <Link to={`/users/${user_id}/posts/${post.id}`}>
+          {/* <Link to={`/users/${user_id}/posts/${post.id}`}> */}
             <Segment style={{ textAlign: 'center' }}>
               <p>{post.body}</p>
               <div
@@ -51,12 +50,14 @@ const UserView = (props) => {
               >
               </div>
               <div>
-                <Button as={Link} to={`/users/${user_id}/posts/${post.id}/edit`}>
-                  Edit
-                </Button>
+                <Link to={`/users/${user_id}/posts/${post.id}/edit`}>
+                  <Button size="mini" color="teal">
+                    Edit
+                  </Button>
+                </Link>
               </div>
             </Segment>
-          </Link>
+          {/* </Link> */}
         </div>
       ))
     } else {

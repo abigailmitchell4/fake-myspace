@@ -14,7 +14,7 @@ class Api::PostsController < ApplicationController
     if @post.update(post_params)
       render json: @post
     else
-      render json: post.errors, status: 422
+      render json: @post.errors, status: 422
     end
   end
 
@@ -23,7 +23,7 @@ class Api::PostsController < ApplicationController
     if post.save
       render json: @post
     else
-      render json: post.errors, status: 422
+      render json: @post.errors, status: 422
     end
   end
 

@@ -3,7 +3,7 @@ import { AuthConsumer, } from "../providers/AuthProvider";
 import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 
 class Login extends React.Component {
-  state = { email: '', password: '' }
+  state = { name:'', email: '', password: '' }
   
   handleSubmit = (e) => {
     e.preventDefault();
@@ -23,9 +23,18 @@ class Login extends React.Component {
       <Segment basic>
         <Header as='h1' textAlign='center'>Login</Header>
         <Form onSubmit={this.handleSubmit}>
+        {/* <Form.Input
+            label="Name"
+            autoFocus
+            required
+            name='name'
+            value={name}
+            placeholder='Name'
+            type='name'
+            onChange={this.handleChange}
+          /> */}
           <Form.Input
             label="Email"
-            autoFocus
             required         
             name='email'
             value={email}

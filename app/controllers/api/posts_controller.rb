@@ -1,12 +1,42 @@
-class Api::PostsController < ApplipostionController
-  before_action :authentiposte_user!
+class Api::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_post, only: [:show, :update, :destroy]
 
   def index
-    render json: User.random_post(current_user.liked_posts)
+    render json: Post.all
+  end
+
+  def show
+    render json: @post
   end
 
   def update
-    current_user.liked_posts << params[:id].to_i
-    current_user.save
+    if @post.update(post_params)
+      render json: @post
+    else
+      render json: post.errors, status: 422
+    end
   end
+
+  def create
+    @post = current_user.posts.new(post_params)
+    if post.save
+      render json: @post
+    else
+      render json: post.errors, status: 422
+    end
+  end
+
+  def destroy
+    @post.destroy
+  end
+
+  private
+    def post_params
+      params.require(:post).permit(:topic, :body)
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
 end

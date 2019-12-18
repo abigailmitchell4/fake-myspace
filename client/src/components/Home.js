@@ -1,13 +1,23 @@
-import React from 'react';
-import { Header, Container, } from 'semantic-ui-react';
+import React from 'react'
+import axios from 'axios'
+import { Container, } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { AuthConsumer, } from "../providers/AuthProvider";
 
-const Home = () => (
-  <Container>
-    <StyledText>hello, welcome to</StyledText>
-    <StyledHeader>mySpace</StyledHeader>
-  </Container>
-)
+const Home = () => {
+
+  return (
+    <AuthConsumer>
+      { auth => (
+        <Container>
+          <StyledText>hello, welcome to</StyledText>
+          <StyledHeader>mySpace</StyledHeader>
+          {/* <CurrentUser user={auth.user} /> */}
+        </Container>
+      )}
+    </AuthConsumer>
+  )
+}
 
 const StyledHeader = styled.h1`
 font-family: 'Karla', sans-serif;

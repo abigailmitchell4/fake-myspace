@@ -9,15 +9,10 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :posts, dependent: :destroy
 
-  serialize :liked_posts, Array
+  serialize :liked_users, Array
 
-  def self.random_post(ids)
-  ids = ids.empty? ? [0] : ids
-  Post.where("id NOT IN (?)", ids).order("RANDOM()")
-  end
-
-  def self.liked(ids)
+  def self.friended(ids)
     ids = ids.empty? ? [0] : ids
-    Post.where("id IN (?)", ids)
+    User.where("id IN (?)", ids)
   end
 end

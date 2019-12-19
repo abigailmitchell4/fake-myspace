@@ -21,7 +21,7 @@ const Users = (props) => {
   return (
     <Container>
       <Header as="h1" textAlign="center">All Users</Header>
-      <Card.Group itemsPerRow={3}>
+      <Card.Group itemsPerRow={4}>
 
       { users.map(user => (
         <Link to={`/users/${user.id}`}>

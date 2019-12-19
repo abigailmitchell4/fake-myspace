@@ -18,7 +18,7 @@ import styled from 'styled-components'
 
 const App = () => (
   <Fragment>
-    <BackgroundColor>
+    {/* <BackgroundColor> */}
       <Navbar />
       <FetchUser>
         <Container>
@@ -40,13 +40,13 @@ const App = () => (
           </Switch>
         </Container>
       </FetchUser>
-    </BackgroundColor>
+    {/* </BackgroundColor> */}
   </Fragment>
 )
 
-const BackgroundColor = styled.div`
-  background-color: #effffa;
-  height: 100vh;
-`
+// const BackgroundColor = styled.div`
+//   background-color: #effffa;
+//   height: fit-content;
+// `
 
 export default App;

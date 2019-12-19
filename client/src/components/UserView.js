@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 import { AuthConsumer, } from "../providers/AuthProvider";
 import { Header, Segment, Button, Container, Card, } from "semantic-ui-react";
+import styled from 'styled-components';
 
 const UserView = (props) => {
   const [user, setUser] = useState({});
@@ -31,7 +32,7 @@ const UserView = (props) => {
     debugger
   };
   const listPosts = () => {
-    const { auth: { user }, match: { params,} }= props;
+    const { auth: { user }, match: { params,} } = props;
     const user_id = user.id
     
     if (user_id == params.id) {
@@ -67,50 +68,42 @@ const UserView = (props) => {
 
   return (
     <Container display="flex">
-      <Header as="h1" textAlign="center">{user.nickname}</Header>
-      <Container>
-        {props.auth.user.id == params.id ?
+      <br />
+      <Segment style={{backgroundColor: "#c6bb2e"}}>
+        <Header style={{color: "#006863", padding: "10px", }}>
+          <span style={{ padding: "10px"}}>
+          {user.name}
+          </span>
+        {/* </Header>
+        <Header style={{color: "#ca8724"}}> */}
+          {user.email}
+        
+        {
+          props.auth.user.id == params.id ?
           <Link to={`/users/${user.id}/edit`}>
-            <Button color="green">
+            <Button size="mini" floated="right" basic color="black">
               Edit Profile
             </Button>
           </Link>
           :
           null
         }
-          <Button onClick={addFriend} size="mini">
+          <Button onClick={addFriend} size="mini" floated="right" basic color="black">
             Add Friend
           </Button>
-        <br />
-        <Card>
-          <Card.Content>
-            <Card.Header>
-              {user.name}
-            </Card.Header>
-            <Card.Meta>
-              {user.email}
-            </Card.Meta>
-          </Card.Content>
-        </Card>
-      </Container>
-      <Container>
-        {
-          user.nickname ?
-          <Header textAlign="center" as="h2">{user.nickname}'s posts</Header>
-          :
-          null
-        }
+          </Header> 
+        </Segment>  
+        <>
+        <Header as="h1" textAlign="center" style={{color: "#ca8724"}}>{user.nickname}</Header>
         { props.auth.user.id == params.id ?
-          <Button as={Link} to={`/users/${user.id}/posts/new`}>
+          <Button as={Link} to={`/users/${user.id}/posts/new`} basic color="black">
             New Post
           </Button>
           :
           null
         }
-        <>
           {listPosts()}
         </>
-      </Container>
     </Container>
   );
 };
@@ -122,5 +115,22 @@ const ConnectedUserView = (props) => (
     )}
   </AuthConsumer>
 );
+
+// const Positioned = styled(Segment)`
+//   /* position: relative;
+//   left: 50rem;
+//   bottom: 5.5rem;
+//   width: 2rem;*/
+//   /* display: flex; */
+//   /* background-color: , !important; */
+//   /* border: none, !important; */
+ 
+// `
+// // const ColoredDiv = styled.div`
+// //   background-color: pink;
+// //   padding: 2rem 2rem 0 2rem;
+// //   margin: 1rem;
+ 
+// // `
 
 export default ConnectedUserView;
